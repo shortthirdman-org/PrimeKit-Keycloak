@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: keycloak-adminclient
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: false
+    keep-alive: true
+    log-startup-info: true
+    register-shutdown-hook: true
+    web-application-type: servlet
+
+logging:
+  include-application-name: true
+  log-level:
+      org.springframework.web: INFO
+      org.keycloak: INFO
+      org.apache.http: INFO
+      com.shortthirdman.primekit: INFO
+
+keycloak:
+  realm: ${KEYCLOAK_REALM:master}
+  endpoint: http://localhost:8080
+  application:
+    client-id: ${KEYCLOAK_CLIENT_ID}
+    client-secret: ${KEYCLOAK_CLIENT_SECRET}
+
+server:
+  port: ${SERVER_PORT:8180}
+  servlet:
+    context-path: ${SERVER_CONTEXT_PATH:/primekit/keycloak/adminclient}
+  forward-headers-strategy: framework
